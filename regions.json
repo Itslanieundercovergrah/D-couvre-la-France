@@ -1,0 +1,44 @@
+[
+  {
+    "name": "Brittany (Bretagne)",
+    "dish": "Galettes and crêpes",
+    "landmark": "The Carnac standing stones",
+    "phrase": "Une galette complète, s’il vous plaît.",
+    "meaning": "A buckwheat crêpe with ham, egg, and cheese, please."
+  },
+  {
+    "name": "Normandy (Normandie)",
+    "dish": "Camembert cheese and apple cider",
+    "landmark": "Mont-Saint-Michel",
+    "phrase": "Un cidre, s’il vous plaît.",
+    "meaning": "A cider, please."
+  },
+  {
+    "name": "Provence",
+    "dish": "Ratatouille and bouillabaisse",
+    "landmark": "The lavender fields and the Palais des Papes in Avignon",
+    "phrase": "Il fait beau aujourd’hui.",
+    "meaning": "The weather is nice today."
+  },
+  {
+    "name": "Alsace",
+    "dish": "Tarte flambée and choucroute",
+    "landmark": "Strasbourg Cathedral",
+    "phrase": "Une tarte flambée à partager, s’il vous plaît.",
+    "meaning": "A tarte flambée to share, please."
+  },
+  {
+    "name": "Île-de-France (Paris region)",
+    "dish": "Croissants and baguettes",
+    "landmark": "The Eiffel Tower",
+    "phrase": "Où est le métro ?",
+    "meaning": "Where is the metro?"
+  },
+  {
+    "name": "Auvergne-Rhône-Alpes",
+    "dish": "Lyon’s traditional cuisine, such as quenelles",
+    "landmark": "Mont Blanc and Lyon’s Fourvière hill",
+    "phrase": "Une table pour deux, s’il vous plaît.",
+    "meaning": "A table for two, please."
+  }
+]

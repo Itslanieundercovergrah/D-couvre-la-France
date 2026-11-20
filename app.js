@@ -1,38 +1,65 @@
-// Your product's interface. It asks the service module (src/service.js)
-// for data and shows the answer. It never fetches data itself.
-import { getItems } from './src/service.js'
+const statusEl = document.getElementById("items-status");
+const listEl = document.getElementById("items-list");
+const searchEl = document.getElementById("region-search");
 
-const statusLine = document.querySelector('#items-status')
-const list = document.querySelector('#items-list')
+let allRegions = [];
 
-// Shows a message in the status line. kind is 'loading', 'empty', 'ok' or 'error'
-function showStatus(kind, message) {
-  statusLine.dataset.kind = kind
-  statusLine.textContent = message
+// Lowercase and remove accents so "ile" matches "Île"
+function clean(text) {
+  return text.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 }
 
-async function showItems() {
-  // DAY 3: show a loading message here
+function addDetail(parent, label, text) {
+  const p = document.createElement("p");
+  const strong = document.createElement("strong");
+  strong.textContent = label + " ";
+  p.append(strong, text);
+  parent.append(p);
+}
 
-  const result = await getItems()
+function showRegions(regions) {
+  listEl.replaceChildren();
+  for (const region of regions) {
+    const li = document.createElement("li");
+    const details = document.createElement("details");
+    const summary = document.createElement("summary");
+    summary.textContent = region.name;
+    details.append(summary);
 
-  // Success: one list item per item. textContent shows text safely.
-  if (result.ok) {
-    list.replaceChildren()
-    for (const item of result.data) {
-      const entry = document.createElement('li')
-      const title = document.createElement('strong')
-      title.textContent = item.title
-      const detail = document.createElement('span')
-      detail.textContent = ` ${item.detail}`
-      entry.append(title, detail)
-      list.append(entry)
-    }
-    showStatus('ok', `Showing ${result.data.length} items.`)
+    addDetail(details, "Famous for:", region.dish);
+    addDetail(details, "Don’t miss:", region.landmark);
+    addDetail(details, "Useful phrase:", region.phrase + " (" + region.meaning + ")");
+
+    li.append(details);
+    listEl.append(li);
   }
-
-  // DAY 3: add the error state here (result.error.message), as on the practice card.
-  // By the Team alpha gate, also add the empty and invalid states.
 }
 
-showItems()
+function applyFilter() {
+  if (allRegions.length === 0) return;
+
+  const term = clean(searchEl.value.trim());
+  const matches = allRegions.filter(function (region) {
+    const text = [region.name, region.dish, region.landmark, region.phrase, region.meaning].join(" ");
+    return clean(text).includes(term);
+  });
+
+  showRegions(matches);
+  statusEl.textContent = matches.length === 0 ? "No regions match your search." : "";
+}
+
+async function loadRegions() {
+  statusEl.textContent = "Loading regions…";
+  try {
+    const response = await fetch("regions.json");
+    if (!response.ok) throw new Error("HTTP " + response.status);
+    allRegions = await response.json();
+    applyFilter();
+  } catch (error) {
+    console.error(error);
+    statusEl.textContent = "Sorry, we couldn’t load the regions. Please try again.";
+  }
+}
+
+searchEl.addEventListener("input", applyFilter);
+loadRegions();
