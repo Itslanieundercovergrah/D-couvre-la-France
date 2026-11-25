@@ -1,27 +1,74 @@
+<!-- ============================================================
+     DÉCOUVRE LA FRANCE: index.html
+     This file is the structure (skeleton) of your home page.
+     It says WHAT is on the page and in WHAT ORDER.
+       - style.css  = how it looks (colors, spacing)
+       - script.js  = what it does (filters, buttons, phrases)
+     Comments like this one are notes for humans. The browser
+     ignores them, so they never show on the page.
+     ============================================================ -->
+
+<!-- Tells the browser this is a modern HTML page -->
 <!DOCTYPE html>
+
+<!-- Start of the page. lang="en" says the text is English
+     (helps screen readers and translation tools) -->
 <html lang="en">
+
+<!-- ========== HEAD: information ABOUT the page (not shown on it) ========== -->
 <head>
+  <!-- UTF-8 makes accents like é, ç and Î display correctly -->
   <meta charset="UTF-8">
+
+  <!-- Makes the page fit properly on phones and small screens -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- The text shown on the browser tab -->
   <title>Découvre la France</title>
+
+  <!-- Connects YOUR style.css file (your own colors and layout) -->
   <link rel="stylesheet" href="style.css">
+
+  <!-- Bootstrap CSS: a ready-made style library loaded from the internet (a CDN).
+       It gives you the navbar, buttons and drawer styling for free.
+       "integrity" is a safety check so the file can't be secretly changed. -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@6.0.0-alpha.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-B/GM4XqrwHnWXNOWMbloTmrYXZg10cakYGmpfsR/bbzQ6JAJI4ihuyADKLnBgrCe" crossorigin="anonymous">
+
+  <!-- Bootstrap JavaScript: makes the menu button open and close the drawer -->
 <script type="module" src="https://cdn.jsdelivr.net/npm/bootstrap@6.0.0-alpha.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-1a/pXj49ZQ1aHEmrJ+gMw1otqoVsYwlEnlD8mIfY2TV03r20Y0CN7uqx1tQogjPL" crossorigin="anonymous"></script>
 </head>
+
+<!-- ========== BODY: everything visitors see ========== -->
 <body>
 
+  <!-- ===== HEADER: the top of the page, holds the navigation bar ===== -->
   <header>
+    <!-- The navbar (menu bar). The class names come from Bootstrap -->
     <nav class="navbar sm:navbar-expand bg-1 fg-2">
   <div class="container-fluid">
+
+    <!-- The site name on the left. href="#" means "stay on this page" -->
     <a class="navbar-brand" href="#">Découvre la France</a>
+
+    <!-- The menu button (the "hamburger" icon).
+         data-bs-toggle and data-bs-target tell Bootstrap which panel to open (#navbarNav).
+         aria-label describes the button for screen readers. -->
     <button class="btn-icon navbar-toggler" type="button" data-bs-toggle="drawer" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon" aria-hidden="true"></span>
     </button>
+
+    <!-- The sliding menu panel (drawer) that the button opens.
+         Its id="navbarNav" matches the button's data-bs-target above. -->
     <dialog class="drawer drawer-end" tabindex="-1" id="navbarNav" aria-labelledby="navbarNavLabel">
+
+      <!-- Top of the drawer: a title and a close (X) button -->
       <div class="drawer-header">
         <h5 class="drawer-title" id="navbarNavLabel">Menu</h5>
         <button type="button" class="btn-close" data-bs-dismiss="drawer" aria-label="Close"></button>
       </div>
+
+      <!-- The list of menu links.
+           href="#regions" jumps down to the section with id="regions". -->
       <div class="drawer-body">
         <ul class="navbar-nav">
           <li class="nav-item">
@@ -43,23 +90,29 @@
 </nav>
   </header>
 
+  <!-- ===== MAIN: the main content of the page ===== -->
   <main>
 
-    <section id="explore">
-      <h2>Exploring France</h2>
-      <p class="intro">
-        France is the most visited country in the world, and it's easy to see why.
-        In one trip you can climb the Eiffel Tower, wander through lavender fields,
-        taste fresh croissants, ski in the Alps and relax on a Mediterranean beach.
-        Every region has its own food, traditions and way of life, so no two trips
-        are ever the same.
-      </p>
+    <!-- ---------- SECTION 1: Exploring France (intro + filter + cards) ---------- -->
+    <section id="explore
+    <h2">🇫🇷🥐ⒺⓍⓅⓁⓄⓇⒾⓃⒼ ⒻⓇⒶⓃⒸⒺ </h2 class="exploring">
+
+      <!-- Intro paragraph. class="intro" lets style.css style it -->
+       <img src="https://previews.123rf.com/images/jaboy/jaboy1603/jaboy160300582/54615984-france-flag-map-icon.jpg" alt=""height="200px width="200px>
+       
+        <p class="intro">France is a country of endless contrasts where every region tells its own story, inviting you to trade rushed sightseeing for unforgettable local experiences. You can spend your mornings wandering the pastel, half-timbered lanes of Alsace or browsing sun-drenched village markets in Provence, and your afternoons hiking wildflower trails around emerald alpine lakes or watching the sunset from Europe’s tallest sand dune along the Atlantic coast. Beyond its famous monuments and world-class museums, the real magic of France lies in its everyday rituals,sharing regional dishes in lively neighborhood bistros, cycling past rolling vineyards, and discovering hidden corners where centuries-old heritage meets vibrant modern creativity.</p>
+
       <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRZI2ljoAPWCbParco15rZkwPt_pRIreUdVTFJkT1aWNg&s=10" alt="Eiffel Tower">
+
       <p class="intro">
         Not sure where to start? Choose a category below, then click
         <strong>Learn more</strong> on any card.
       </p>
 
+      <!-- FILTER BUTTONS.
+           data-filter holds the category name. Your JavaScript reads it and
+           shows only the cards whose data-category matches.
+           "active" marks the button that is currently selected. -->
       <div class="filter-buttons">
         <button class="filter-btn active" data-filter="all">All</button>
         <button class="filter-btn" data-filter="city">Cities</button>
@@ -68,126 +121,175 @@
         <button class="filter-btn" data-filter="beach">Beaches</button>
       </div>
 
+      <!-- CARD GRID: a container that holds all the place cards.
+           Each card below follows the same pattern:
+             data-category = which filter group it belongs to
+             .icon         = an emoji picture
+             h3            = the place name
+             p             = a short description
+             .more         = extra text, hidden until "Learn more" is clicked
+             .learn-btn    = the button that shows or hides the extra text -->
       <div class="card-grid">
 
+        <!-- CARD: Paris (category: city) -->
         <div class="info-card" data-category="city">
           <div class="icon">🗼</div>
           <h3>Paris</h3>
-          <p>Art, cafés and iconic landmarks.</p>
+          <img src="https://i.etsystatic.com/6772044/r/il/3c7a06/2982852733/il_fullxfull.2982852733_gyzn.jpg" alt="" class="cafe" width="500px" height="500px">
+          <p>Art cafes</p>
           <div class="more">Visit the Louvre, climb Montmartre, see the Eiffel Tower at night and take a Seine river cruise.</div>
           <button class="learn-btn">Learn more</button>
         </div>
 
+        <!-- CARD: Bordeaux (category: city) -->
         <div class="info-card" data-category="city">
           <div class="icon">🍷</div>
           <h3>Bordeaux</h3>
+          <img src="https://velvetescape.com/wp-content/uploads/2025/08/IMG_2086-1.jpeg" alt=""class="streets">
           <p>Elegant streets and world-famous wine.</p>
+          <!-- This image is empty (src=""), so it shows nothing yet.
+               Add a picture link inside the quotes, or delete this line. -->
           <img src="" alt="">
           <div class="more">Tour the vineyards, taste local wines and walk along the Garonne river.</div>
           <button class="learn-btn">Learn more</button>
         </div>
 
+        <!-- CARD: Lyon (category: city) -->
         <div class="info-card" data-category="city">
           <div class="icon">🍽️</div>
           <h3>Lyon</h3>
-          <p>The food capital of France.</p>
+          <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/14/da/01/47/vieux-lyon.jpg?w=900&h=500&s=1" class="lyon">
+        </p>The food capital of France.</p>
           <div class="more">Try a traditional bouchon restaurant and explore the old town's hidden passageways.</div>
           <button class="learn-btn">Learn more</button>
         </div>
 
+        <!-- CARD: Provence (category: nature) -->
         <div class="info-card" data-category="nature">
           <div class="icon">💜</div>
           <h3>Provence</h3>
+          <img src=https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRNRKGgLP2KI3G2ltUBdSvCf_h1CPJxfln99YdHwzHm_mkL6l6hnBuxvGp3&s=10 alt=""class="provence"height="500px"width=500px>
           <p>Lavender fields and sunny villages.</p>
           <div class="more">Best in late June to July. Try the markets in Aix-en-Provence.</div>
           <button class="learn-btn">Learn more</button>
         </div>
 
+        <!-- CARD: French Alps (category: nature) -->
         <div class="info-card" data-category="nature">
           <div class="icon">⛷️</div>
           <h3>French Alps</h3>
+          <img src="https://pictures.altai-travel.com/1920x0/view-of-cheserys-lake-lac-de-cheserys-adobe-stock-2751.jpg" alt=""height="500px"weight="500px">
           <p>Skiing, hiking and mountain views.</p>
           <div class="more">Chamonix has views of Mont Blanc in both winter and summer.</div>
           <button class="learn-btn">Learn more</button>
         </div>
 
+        <!-- CARD: Loire Valley (category: history) -->
         <div class="info-card" data-category="history">
           <div class="icon">🏰</div>
           <h3>Loire Valley</h3>
+          <img src="//www.tastefrance.com/sites/default/files/styles/article_main_image/public/2020-10/2047_Chateau_de_Saumur_Osmany_Tavares.jpg.webp?itok=4W61-aPi alt="height="500px"width="500px">
           <p>Fairytale castles and vineyards.</p>
           <div class="more">Chambord and Chenonceau are the most famous châteaux. Rent a bike to see several.</div>
           <button class="learn-btn">Learn more</button>
         </div>
 
+        <!-- CARD: Mont-Saint-Michel (category: history) -->
         <div class="info-card" data-category="history">
           <div class="icon">⛪</div>
           <h3>Mont-Saint-Michel</h3>
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcPjw0klVlWZOFRIIcdQtDT_ZpaKoBLucURN3LkCdkNcC0gRhIl5htazj3&s=10"class="mont-saint">
           <p>An island abbey rising from the sea.</p>
           <div class="more">Check the tide times and arrive early to avoid the crowds.</div>
           <button class="learn-btn">Learn more</button>
         </div>
 
+        <!-- CARD: Versailles (category: history) -->
         <div class="info-card" data-category="history">
           <div class="icon">👑</div>
           <h3>Versailles</h3>
+          <img src="https://media.admiddleeast.com/photos/67801eac08ae1fbf0d9bfb34/1:1/w_3645,h_3645,c_limit/GettyImages-654129350.jpg" alt=""height="500px width="500px>
           <p>The grand palace of the French kings.</p>
           <div class="more">See the Hall of Mirrors and the gardens. It's an easy day trip from Paris.</div>
           <button class="learn-btn">Learn more</button>
         </div>
 
+        <!-- CARD: French Riviera (category: beach) -->
         <div class="info-card" data-category="beach">
           <div class="icon">🏖️</div>
           <h3>French Riviera</h3>
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPtYvx1n9Cn2GcFldLZ8WS83G7X60gWWYZzOP5mq3wSI5Hx39XyOugAZML&s=10" alt=""height="500px width="500px>
           <p>Glamorous beaches and sea views.</p>
           <div class="more">Explore Nice, Cannes and Antibes. Book early in summer.</div>
           <button class="learn-btn">Learn more</button>
         </div>
 
+        <!-- CARD: Brittany Coast (category: beach) -->
         <div class="info-card" data-category="beach">
           <div class="icon">🌊</div>
           <h3>Brittany Coast</h3>
+          <img src="https://linkparis.com/wp-content/uploads/2024/07/Saint-Malo-2.jpg" alt=""height="500px width="500px>
           <p>Rugged cliffs and sandy bays.</p>
           <div class="more">Try a fresh crêpe by the sea and visit the pink granite coast.</div>
           <button class="learn-btn">Learn more</button>
         </div>
 
+        <!-- CARD: Corsica (category: beach) -->
         <div class="info-card" data-category="beach">
           <div class="icon">🏝️</div>
           <h3>Corsica</h3>
+          <img src="https://coolcorsica.com/wp-content/uploads/2020/04/DSCF4880.jpg" alt=""height="500px width="500px>
           <p>A mountainous island with clear water.</p>
           <div class="more">Great for hiking, swimming and quiet villages away from the crowds.</div>
           <button class="learn-btn">Learn more</button>
         </div>
 
+        <!-- CARD: Gorges du Verdon (category: nature) -->
         <div class="info-card" data-category="nature">
           <div class="icon">🏞️</div>
           <h3>Gorges du Verdon</h3>
+          <img src="https://verdonsecret.com/wp-content/uploads/2020/04/canoeing-in-the-gorges-du-verdon.jpg" alt=""height="500px weight="500px>
           <p>Turquoise water and dramatic canyons.</p>
           <div class="more">Rent a kayak or paddle boat to see the canyon from the water.</div>
           <button class="learn-btn">Learn more</button>
         </div>
 
       </div>
+      <!-- end of card-grid -->
     </section>
 
+    <!-- ---------- SECTION 2: Explore the regions ---------- -->
     <section id="regions">
       <h2>Explore the regions</h2>
+
+      <!-- Four buttons, one per region.
+           data-region is the name your JavaScript uses to know which
+           region was clicked, so it can show the right information. -->
       <div class="region-buttons">
         <button data-region="paris">Paris</button>
+        <!-- id="prov" gives this one button a unique name
+             (useful if JavaScript or CSS needs to find just this button) -->
         <button id="prov" data-region="provence">Provence</button>
         <button data-region="brittany">Brittany</button>
         <button data-region="alsace">Alsace</button>
       </div>
+
+      <!-- An info box. JavaScript replaces the text inside it
+           when a region button is clicked. -->
       <div id="region-info" class="card">
         <p>Click a region to learn more.</p>
       </div>
     </section>
 
+    <!-- ---------- SECTION 3: Useful French phrases ---------- -->
     <section id="phrases">
       <h2>Useful French phrases</h2>
+      <!-- An empty list on purpose.
+           JavaScript fills it with phrases, and finds it by id="phrase-list". -->
       <ul id="phrase-list"></ul>
     </section>
 
+    <!-- ---------- SECTION 4: When to go ---------- -->
     <section id="when">
       <h2>When to go</h2>
       <p>Spring and early autumn are great for mild weather and fewer crowds. Summer is best for beaches and lavender fields.</p>
@@ -195,11 +297,14 @@
 
   </main>
 
+  <!-- ===== FOOTER: the bottom of the page ===== -->
   <footer>
     <p>© 2026 Découvre la France</p>
   </footer>
 
+  <!-- Loads your JavaScript file. It is at the very bottom so all the page
+       elements above already exist when the script looks for them.
+       This file must be named exactly script.js and sit in the same folder. -->
   <script src="script.js"></script>
 </body>
 </html>
-

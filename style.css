@@ -4,11 +4,12 @@ body {
   font-family: Arial, sans-serif;
   margin: 0;
   line-height: 1.6;
-  color: #222;
-  background: #f7f7fb;
+  color:black;
+  background:white
 }
 
 header {
+  font-size: larger;
   background: #1d3f8f;
   color: white;
   text-align: center;
@@ -17,6 +18,8 @@ header {
 }
 
 nav a {
+  background-color:black;
+  font-size: larger;
   color: white;
   margin: 0 0.8rem;
   text-decoration: wavy;
@@ -27,7 +30,6 @@ main { max-width: 800px; margin: 0 auto; padding: 1rem; }
 
 .region-buttons button {
   background: plum;
-  color:black;
   border: none;
   padding: 0.6rem 1.2rem;
   margin: 0.3rem;
@@ -36,7 +38,28 @@ main { max-width: 800px; margin: 0 auto; padding: 1rem; }
   font-size: large;
 }
 
-.region-buttons button:hover { background: #a81d2c; }
+.streets{
+height: 500px;
+width: 500px;
+}
+.lyon{
+  height: 500px;
+  width: 500px;
+}
+.mont-saint{
+  height: 500px;
+  width: 500px;
+}
+.intro{
+  font-size:xx-large;
+  background-color: white;
+  color:black;
+}
+.exploring{
+  font-size: xx-large;
+}
+
+.region-buttons button:hover { background:pink; }
 
 .card {
   background: white;
@@ -44,6 +67,7 @@ main { max-width: 800px; margin: 0 auto; padding: 1rem; }
   border-radius: 8px;
   margin-top: 1rem;
   box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  text-decoration-color: #222;
 }
 
 footer { text-align: center; padding: 1rem; color: #666; }
