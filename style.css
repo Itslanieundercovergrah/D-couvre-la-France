@@ -1,33 +1,217 @@
+/* ============================================================
+   DÉCOUVRE LA FRANCE: style.css
+   ============================================================ */
+
 * { box-sizing: border-box; }
+
+/* Anything with the "hidden" attribute must really disappear,
+   even if another rule sets its display */
+[hidden] { display: none !important; }
+
+html { scroll-behavior: smooth; }
 
 body {
   font-family: Arial, sans-serif;
   margin: 0;
   line-height: 1.6;
-  color:black;
-  background:white
+  color: black;
+  background: white;
 }
 
-header {
-  font-size: larger;
+img { max-width: 100%; }
+
+/* ---------- Skip link (only visible when you press Tab) ---------- */
+.skip-link {
+  position: absolute;
+  left: -999px;
+}
+.skip-link:focus {
+  left: 1rem;
+  top: 1rem;
+  background: white;
+  color: black;
+  padding: 0.5rem 1rem;
+  z-index: 10;
+}
+
+/* ---------- Header and menu ---------- */
+.site-header {
   background: #1d3f8f;
   color: white;
   text-align: center;
-  padding: 2rem 1rem;
-  font-size: larger;
+  padding: 2rem 1rem 1rem;
 }
+.site-title { margin: 0; font-size: 2.2rem; }
+.tagline { margin: 0.4rem 0 1rem; font-size: larger; }
 
-nav a {
-  background-color:black;
-  font-size: larger;
+.site-nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+.site-nav a {
   color: white;
-  margin: 0 0.8rem;
-  text-decoration: wavy;
   font-weight: bold;
+  font-size: larger;
+  text-decoration: none;
+  padding: 0.3rem 0.9rem;
+  border-radius: 999px;
+}
+.site-nav a:hover,
+.site-nav a:focus { background: rgba(255, 255, 255, 0.25); }
+
+/* ---------- Page layout ---------- */
+main { max-width: 1000px; margin: 0 auto; padding: 1rem; }
+section { scroll-margin-top: 1rem; }
+
+.exploring { font-size: xx-large; }
+
+.intro {
+  font-size: 1.15rem;
+  background-color: white;
+  color: black;
 }
 
-main { max-width: 800px; margin: 0 auto; padding: 1rem; }
+.flag-icon {
+  display: block;
+  width: 120px;
+  height: auto;
+  margin: 0 auto 1rem;
+}
 
+.hero { margin: 1rem 0; }
+.hero img {
+  display: block;
+  width: 100%;
+  max-height: 420px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+/* ---------- "Learn more about France" button and panel ---------- */
+.learn-france-btn {
+  background: #1d3f8f;
+  color: white;
+  border: none;
+  padding: 0.7rem 1.4rem;
+  font-size: 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  margin: 1rem 0;
+}
+.learn-france-btn:hover { background: #d62839; }
+
+.france-facts {
+  background: #f7f5f0;
+  border-left: 5px solid #d62839;
+  padding: 1rem 1.5rem;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+}
+
+/* ---------- Filter buttons ---------- */
+.filter-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 1rem 0 0.5rem;
+}
+.filter-btn {
+  background: #eee;
+  border: 2px solid #1d3f8f;
+  color: #1d3f8f;
+  padding: 0.5rem 1.1rem;
+  border-radius: 999px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+.filter-btn:hover { background: #dfe6f7; }
+.filter-btn.active {
+  background: #1d3f8f;
+  color: white;
+}
+
+.status { margin: 0.5rem 0 1rem; color: #555; min-height: 1.5rem; }
+
+/* ---------- Card grid ---------- */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1.25rem;
+  align-items: start;
+}
+
+.info-card {
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  display: flex;
+  flex-direction: column;
+}
+
+/* Picture area: every picture gets the same shape, cropped to fit */
+.card-media {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  background: linear-gradient(135deg, #1d3f8f, #d62839);
+  overflow: hidden;
+}
+.card-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Emoji badge in the corner of the picture */
+.card-media .icon {
+  position: absolute;
+  left: 0.6rem;
+  bottom: 0.6rem;
+  font-size: 1.5rem;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 999px;
+  padding: 0.15rem 0.55rem;
+}
+
+/* If a picture can't load, show a big emoji on the colour background */
+.card-media.no-photo .icon {
+  inset: 0;
+  margin: auto;
+  width: fit-content;
+  height: fit-content;
+  font-size: 4rem;
+  background: none;
+}
+
+.card-body { padding: 1rem; }
+.card-body h3 { margin: 0 0 0.25rem; }
+.card-body .summary { margin: 0 0 0.75rem; }
+
+.more {
+  background: #f7f5f0;
+  border-left: 4px solid #d62839;
+  border-radius: 6px;
+  padding: 0.5rem 0.9rem;
+  margin-bottom: 0.75rem;
+}
+.more p { margin: 0.4rem 0; }
+
+.learn-btn {
+  background: #1d3f8f;
+  color: white;
+  border: none;
+  padding: 0.55rem 1.1rem;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+.learn-btn:hover { background: #d62839; }
+
+/* ---------- Region buttons ---------- */
 .region-buttons button {
   background: plum;
   border: none;
@@ -37,37 +221,99 @@ main { max-width: 800px; margin: 0 auto; padding: 1rem; }
   cursor: pointer;
   font-size: large;
 }
-
-.streets{
-height: 500px;
-width: 500px;
+.region-buttons button:hover { background: pink; }
+.region-buttons button[aria-pressed="true"] {
+  background: #1d3f8f;
+  color: white;
 }
-.lyon{
-  height: 500px;
-  width: 500px;
-}
-.mont-saint{
-  height: 500px;
-  width: 500px;
-}
-.intro{
-  font-size:xx-large;
-  background-color: white;
-  color:black;
-}
-.exploring{
-  font-size: xx-large;
-}
-
-.region-buttons button:hover { background:pink; }
 
 .card {
   background: white;
   padding: 1rem;
   border-radius: 8px;
   margin-top: 1rem;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-  text-decoration-color: #222;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+.card h3 { margin-top: 0; }
+
+/* ---------- Phrases ---------- */
+.phrase-list {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 0.75rem;
+}
+.phrase-list li {
+  background: #f7f5f0;
+  border-left: 4px solid #1d3f8f;
+  padding: 0.6rem 0.9rem;
+  border-radius: 6px;
+}
+/* ---------- Useful phrases ---------- */
+.note { color: #555; font-style: italic; }
+
+.phrase-group h3 {
+  margin: 1.5rem 0 0.5rem;
+  color: #1d3f8f;
+  border-bottom: 3px solid #d62839;
+  display: inline-block;
 }
 
+.phrase-list {
+  list-style: none;
+  padding: 0;
+  margin: 0.5rem 0 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 0.75rem;
+}
+.phrase-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.75rem;
+  background: #f7f5f0;
+  border-left: 4px solid #1d3f8f;
+  padding: 0.6rem 0.9rem;
+  border-radius: 6px;
+}
+.phrase-text { display: flex; flex-direction: column; }
+.phrase-fr { font-weight: bold; font-size: 1.05rem; }
+.phrase-pron { color: #777; font-size: 0.9rem; font-style: italic; }
+.phrase-en { color: #333; }
+
+.speak-btn {
+  flex-shrink: 0;
+  background: white;
+  border: 2px solid #1d3f8f;
+  border-radius: 50%;
+  width: 2.4rem;
+  height: 2.4rem;
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+.speak-btn:hover { background: #dfe6f7; }
+
+.tips-box {
+  background: #f7f5f0;
+  border-left: 5px solid #d62839;
+  border-radius: 8px;
+  padding: 0.5rem 1.5rem 0.75rem;
+  margin-top: 1.5rem;
+}
+
+/* ---------- Footer ---------- */
 footer { text-align: center; padding: 1rem; color: #666; }
+
+/* ---------- Keyboard focus ring ---------- */
+button:focus-visible,
+a:focus-visible {
+  outline: 3px solid #d62839;
+  outline-offset: 2px;
+}
+
+/* Respect people who prefer less motion */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
